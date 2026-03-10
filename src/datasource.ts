@@ -155,7 +155,7 @@ export class DataSource extends DataSourceApi<SearchQuery, ClpDataSourceOptions>
     const dataframeObservables = options.targets.map((target, i) =>
       zip(timestampColumnNamesObservables[i], queryResultsObservables[i]).pipe(
         map(([timestampColumnNames, dataBuffer]) => {
-          let fields = [];
+          const fields = [];
 
           const values = target.maxNumResults ? dataBuffer.slice(0, target.maxNumResults) : dataBuffer;
           fields.push({ name: 'body', values, type: FieldType.string });
